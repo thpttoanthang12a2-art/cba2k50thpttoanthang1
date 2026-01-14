@@ -1,1 +1,2283 @@
-# cba2k50thpttoanthang1
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ẢNH KỶ YẾU CBA2K50</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a237e 0%, #4a148c 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            background: linear-gradient(135deg, #1a237e 0%, #4a148c 100%);
+            color: white;
+            padding: 40px 30px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .loading-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .loading-text {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.5px;
+            background: linear-gradient(to right, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: #e3f2fd;
+        }
+
+        /* ========== FOLDER NAVIGATION ========== */
+        .folder-navigation {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .folder-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .folder-tab {
+            padding: 10px 20px;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .folder-tab:hover {
+            border-color: #4361ee;
+            color: #4361ee;
+        }
+
+        .folder-tab.active {
+            background: linear-gradient(135deg, #4361ee, #3a56d4);
+            color: white;
+            border-color: #4361ee;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+        .folder-tab .folder-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .folder-tab:not(.active) .folder-badge {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        /* ========== ALBUM SECTION ========== */
+        .album-section {
+            padding: 30px;
+        }
+
+        /* ========== CONTROLS ========== */
+        .controls-panel {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 20px 25px;
+            margin-bottom: 25px;
+            border: 1px solid #dee2e6;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .controls-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .controls-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-width: 160px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-select-all {
+            background: #4361ee;
+            color: white;
+        }
+
+        .btn-select-all:hover {
+            background: #3a56d4;
+        }
+
+        .btn-deselect {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-deselect:hover {
+            background: #5a6268;
+        }
+
+        .btn-download-selected {
+            background: linear-gradient(135deg, #4361ee, #3a56d4);
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-download-selected:hover {
+            background: linear-gradient(135deg, #3a56d4, #2e4bc1);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+        }
+
+        .btn-download-all {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+            font-weight: bold;
+        }
+
+        .btn-download-all:hover {
+            background: linear-gradient(135deg, #ffc107, #ffe066);
+            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+        }
+
+        /* Album Container */
+        .album-container {
+            min-height: 400px;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-album {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+            display: block;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e9ecef;
+            border-top: 4px solid #4361ee;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        /* Gallery - QUAN TRỌNG: Điều chỉnh grid cho 5 ảnh/hàng */
+        .gallery {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Grid cho phiên bản Cao Cấp: 5 ảnh/hàng */
+        .gallery.premium {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        /* Grid cho phiên bản Cân Bằng: 4 ảnh/hàng */
+        .gallery.balanced {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .image-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border: 2px solid transparent;
+            position: relative;
+            cursor: pointer;
+            animation: fadeIn 0.3s ease forwards;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .image-card.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hiệu ứng hover đặc biệt cho phiên bản Cao Cấp */
+        .premium .image-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease, box-shadow 0.3s ease;
+        }
+
+        .premium .image-card:hover {
+            transform: perspective(1000px) rotateY(5deg) rotateX(5deg) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: #28a745;
+        }
+
+        /* Hiệu ứng hover cho phiên bản Cân Bằng */
+        .balanced .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #28a745;
+        }
+
+        .image-card.selected {
+            border-color: #4361ee;
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.3);
+        }
+
+        .image-checkbox {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 22px;
+            height: 22px;
+            z-index: 10;
+            cursor: pointer;
+            accent-color: #28a745;
+        }
+
+        /* Container ảnh preview - KÍCH THƯỚC CỐ ĐỊNH */
+        .image-preview-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+        }
+
+        /* Chiều cao cố định cho cả 2 phiên bản */
+        .premium .image-preview-container {
+            height: 260px; /* Thấp hơn cho 5 ảnh/hàng */
+            aspect-ratio: 4/3;
+        }
+
+        .balanced .image-preview-container {
+            height: 260px; /* Cao hơn cho 4 ảnh/hàng */
+            aspect-ratio: 4/3;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+            opacity: 0;
+        }
+
+        .image-preview.loaded {
+            opacity: 1;
+        }
+
+        .premium .image-card:hover .image-preview {
+            transform: scale(1.08);
+        }
+
+        .balanced .image-card:hover .image-preview {
+            transform: scale(1.05);
+        }
+
+        .image-info {
+            padding: 12px;
+            position: relative;
+        }
+
+        .image-name {
+            font-weight: 600;
+            color: #495057;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 6px;
+        }
+
+        .image-size {
+            font-size: 11px;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Nút tải ảnh gốc */
+        .image-download-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #4361ee, #3a56d4);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 5;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 8px rgba(67, 97, 238, 0.4);
+        }
+
+        .image-card:hover .image-download-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .image-download-btn:hover {
+            background: linear-gradient(135deg, #3a56d4, #2e4bc1);
+            transform: translateY(0) scale(1.1);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.6);
+        }
+
+        .image-download-btn i {
+            font-size: 10px;
+        }
+
+        .empty-gallery {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+        }
+
+        .empty-gallery i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* ========== LIGHTBOX ========== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 1000;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            position: relative;
+            text-align: center;
+        }
+
+        .lightbox-img-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+            background: #1a1a1a;
+            opacity: 0;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-img.loaded {
+            opacity: 1;
+        }
+
+        .lightbox-caption {
+            margin-top: 15px;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-info {
+            text-align: left;
+            flex: 1;
+        }
+
+        .lightbox-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Lightbox download button */
+        .lightbox-download-btn {
+            background: linear-gradient(135deg, #4361ee, #3a56d4);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.4);
+        }
+
+        .lightbox-download-btn:hover {
+            background: linear-gradient(135deg, #3a56d4, #2e4bc1);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.6);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 1001;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(220, 53, 69, 0.9);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(67, 97, 238, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
+        /* Message Styles */
+        .message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #4361ee, #3a56d4);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1001;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease;
+            border-left: 4px solid #ffd700;
+        }
+
+        .message-warning {
+            background: linear-gradient(135deg, #ffc107, #ffca2c);
+            color: #333;
+        }
+
+        .message-info {
+            background: linear-gradient(135deg, #17a2b8, #2ab7ca);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        /* Image counter */
+        .image-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #4361ee, #3a56d4);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Progress Bar */
+        .progress-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .progress-overlay.active {
+            display: flex;
+        }
+
+        .progress-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .progress-title {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4361ee, #3a56d4);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Phiên bản hiển thị */
+        .version-badge {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            animation: pulse 2s infinite;
+        }
+
+        .version-badge.premium {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .version-badge.balanced {
+            background: linear-gradient(135deg, #4361ee, #3a56d4);
+            color: white;
+        }
+
+        /* Lightbox Loading Spinner */
+        .lightbox-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .lightbox-loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #4361ee;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Lightbox Image Counter */
+        .lightbox-counter {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Responsive - QUAN TRỌNG: Điều chỉnh số cột theo màn hình */
+        @media (max-width: 1400px) {
+            .gallery.premium {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .gallery.balanced {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .gallery.premium {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .gallery.balanced {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .gallery.premium {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .gallery.balanced {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .premium .image-preview-container {
+                height: 180px;
+            }
+            
+            .balanced .image-preview-container {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 30px 20px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .album-section {
+                padding: 20px;
+            }
+            
+            .controls-panel {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+            
+            .controls-left,
+            .controls-right {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .action-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .btn {
+                min-width: 140px;
+                flex: 1;
+            }
+            
+            /* Tablet: 2 cột */
+            .gallery.premium,
+            .gallery.balanced {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .premium .image-preview-container {
+                height: 160px;
+            }
+            
+            .balanced .image-preview-container {
+                height: 160px;
+            }
+            
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+            
+            .lightbox-prev {
+                left: 10px;
+            }
+            
+            .lightbox-next {
+                right: 10px;
+            }
+            
+            .lightbox-caption {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .lightbox-info {
+                text-align: center;
+            }
+            
+            .image-download-btn {
+                opacity: 1;
+                transform: translateY(0);
+                font-size: 10px;
+                padding: 5px 8px;
+            }
+            
+            .version-badge {
+                top: 5px;
+                left: 5px;
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+            
+            /* Mobile: 2 cột nhỏ hơn */
+            .gallery.premium,
+            .gallery.balanced {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .premium .image-preview-container {
+                height: 140px;
+            }
+            
+            .balanced .image-preview-container {
+                height: 140px;
+            }
+            
+            .controls-panel {
+                padding: 15px;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                min-width: 120px;
+                font-size: 14px;
+            }
+            
+            .lightbox-caption {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            .lightbox-download-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+            
+            .image-counter {
+                bottom: 10px;
+                right: 10px;
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+        }
+
+        @media (max-width: 100px) {
+            /* Mobile nhỏ: 1 cột */
+            .gallery.premium,
+            .gallery.balanced {
+                grid-template-columns: 1fr;
+            }
+            
+            .premium .image-preview-container {
+                height: 200px;
+            }
+            
+            .balanced .image-preview-container {
+                height: 200px;
+            }
+            
+            .image-info {
+                padding: 8px;
+            }
+            
+            .image-name {
+                font-size: 12px;
+            }
+            
+            .image-size {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Overlay -->
+    <div class="progress-overlay" id="progress-overlay">
+        <div class="progress-container">
+            <div class="progress-title" id="progress-title">Đang tải ảnh...</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-text" id="progress-text">0%</div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="lightbox-counter" id="lightbox-counter">
+            <i class="fas fa-image"></i>
+            <span id="lightbox-counter-text">1/1</span>
+        </div>
+        <button class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="lightbox-content">
+            <div class="lightbox-img-container">
+                <div class="lightbox-loading" id="lightbox-loading">
+                    <div class="lightbox-loading-spinner"></div>
+                </div>
+                <img class="lightbox-img" id="lightbox-img" src="" alt="">
+            </div>
+            <div class="lightbox-caption" id="lightbox-caption">
+                <div class="lightbox-info" id="lightbox-info"></div>
+                <div class="lightbox-actions">
+                    <button class="lightbox-download-btn" id="lightbox-download-btn" onclick="downloadOriginalQualityImage(currentLightboxIndex)">
+                        <i class="fas fa-download"></i>
+                        <span>Tải ảnh</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Image Counter -->
+    <div class="image-counter" id="image-counter" style="display: none;">
+        <i class="fas fa-images"></i>
+        <span id="counter-text">Đang tải...</span>
+    </div>
+
+    <div class="container">
+        <!-- Phần 1: Tiêu đề và thông tin -->
+        <div class="header">
+            <div class="loading-section">
+                <div class="loading-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <p class="loading-text" id="loading-text">Đang tải ảnh...</p>
+            </div>
+
+            <h1>ẢNH KỶ YẾU CBA2K50</h1>
+            
+            <div class="performance-info" id="performance-info" style="margin-top: 10px; font-size: 14px; opacity: 0.8;">
+                <i class="fas fa-microchip"></i>
+                <span id="device-status">Đang kiểm tra thiết bị...</span>
+            </div>
+        </div>
+
+        <!-- Phần 2: Điều hướng thư mục -->
+        <div class="folder-navigation">
+            <div class="folder-tabs" id="folder-tabs">
+                <!-- Folder tabs sẽ được tạo tự động -->
+            </div>
+        </div>
+
+        <!-- Phần 3: Album ảnh -->
+        <div class="album-section">
+            <!-- Controls Panel - 1 hàng -->
+            <div class="controls-panel">
+                <div class="controls-left">
+                    <div class="control-group">
+                        <button class="btn btn-select-all" onclick="selectAllImages()">
+                            <i class="fas fa-check-square"></i> Chọn tất cả
+                        </button>
+                    </div>
+                    
+                    <div class="control-group">
+                        <button class="btn btn-deselect" onclick="deselectAllImages()">
+                            <i class="fas fa-square"></i> Bỏ chọn
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="controls-right">
+                    <div class="action-buttons">
+                        <button class="btn btn-download-selected" onclick="downloadSelectedOriginalImages()">
+                            <i class="fas fa-download"></i> Tải ảnh đã chọn
+                        </button>
+                        
+                        <button class="btn btn-download-all" onclick="downloadAllOriginalImages()">
+                            <i class="fas fa-cloud-download-alt"></i> Tải tất cả ảnh
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Album ảnh -->
+            <div class="album-container">
+                <div class="loading-album" id="loading-album">
+                    <div class="loading-spinner"></div>
+                    <p id="loading-message">Đang tải ảnh...</p>
+                    <p id="loading-detail" style="font-size: 14px; margin-top: 10px;"></p>
+                </div>
+                <div class="gallery" id="gallery">
+                    <!-- Ảnh sẽ được thêm vào đây cùng lúc -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== CẤU HÌNH 2 PHIÊN BẢN ==========
+        const GOOGLE_DRIVE_FOLDERS = [
+            {
+                id: "1j1AtT6QNCgBcogacMHji5sQLsEdPKVpz",
+                name: "Folder 1"
+            },
+            {
+                id: "1qtQpy-E6-p72DB38-hjRMS9xmCQ6P5X1",
+                name: "Folder 2"
+            },
+            {
+                id: "17sEGxJgyIws3Hfg6ur_qvGY86kb1GoLd",
+                name: "Folder 3"
+            },
+            {
+                id: "1j1AtT6QNCgBcogacMHji5sQLsEdPKVpz",
+                name: "Folder 4"
+            }
+        ];
+
+        const GOOGLE_API_KEY = "AIzaSyBXDzWUU-ScvUqDeBKBTSge64zJozeIa44";
+        
+        // Biến cấu hình phiên bản
+        let CURRENT_VERSION = 'balanced'; // 'balanced' hoặc 'premium'
+        let MAX_IMAGES_PER_FOLDER = 1400; // Mặc định: phiên bản cân bằng
+        let IMAGES_PER_PAGE = 1000;
+        let MAX_CONCURRENT_IMAGE_LOADS = 10;
+        let THUMBNAIL_QUALITY = 100;
+        let PREVIEW_QUALITY = 800;
+        let HIGH_QUALITY = 1200;
+        let LIGHTBOX_QUALITY = 1200;
+        let CACHE_DURATION = 1000 * 60 * 60 * 24; // 24 giờ
+        
+        // Phát hiện cấu hình thiết bị
+        let isLowPerformanceDevice = false;
+        let deviceScore = 0;
+        
+        // Biến toàn cục
+        let foldersData = {};
+        let currentFolderIndex = 0;
+        let images = [];
+        let selectedImages = new Set();
+        let currentLightboxIndex = -1;
+        let imageCache = new Map();
+        let loadingQueue = [];
+        let processingQueue = false;
+        let loadedImagesCount = 0;
+        let totalImagesCount = 0;
+
+        // ========== PHÁT HIỆN THIẾT BỊ VÀ CHỌN PHIÊN BẢN ==========
+        function detectDevicePerformance() {
+            console.log('🔍 Đang kiểm tra cấu hình thiết bị...');
+            
+            // Điểm số cấu hình
+            let score = 100;
+            
+            // Kiểm tra số lượng CPU cores
+            const cpuCores = navigator.hardwareConcurrency || 4;
+            console.log(`CPU Cores: ${cpuCores}`);
+            if (cpuCores <= 2) score -= 40;
+            else if (cpuCores <= 4) score -= 20;
+            
+            // Kiểm tra bộ nhớ RAM
+            const deviceMemory = navigator.deviceMemory || 4;
+            console.log(`Device Memory: ${deviceMemory}GB`);
+            if (deviceMemory <= 2) score -= 30;
+            else if (deviceMemory <= 4) score -= 15;
+            
+            // Kiểm tra kết nối mạng
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            if (connection) {
+                console.log(`Connection type: ${connection.effectiveType}`);
+                console.log(`Downlink: ${connection.downlink} Mbps`);
+                
+                if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+                    score -= 50;
+                } else if (connection.effectiveType === '3g') {
+                    score -= 30;
+                } else if (connection.effectiveType === '4g') {
+                    score -= 10;
+                }
+                
+                if (connection.downlink <= 1) score -= 20;
+                else if (connection.downlink <= 3) score -= 10;
+            }
+            
+            // Kiểm tra độ phân giải màn hình
+            const screenPixels = window.screen.width * window.screen.height;
+            console.log(`Screen resolution: ${window.screen.width}x${window.screen.height}`);
+            if (screenPixels <= 1024 * 768) score -= 10;
+            
+            // Kiểm tra WebGL capability (đồ họa)
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (!gl) score -= 20;
+            } catch(e) {
+                score -= 20;
+            }
+            
+            deviceScore = score;
+            
+            // Chọn phiên bản dựa trên điểm số
+            if (score >= 75) {
+                CURRENT_VERSION = 'premium';
+                console.log('🚀 Chọn phiên bản: Cao Cấp (Premium)');
+            } else {
+                CURRENT_VERSION = 'balanced';
+                console.log('⚡ Chọn phiên bản: Cân Bằng (Balanced)');
+            }
+            
+            // Thiết bị yếu nếu điểm < 45
+            isLowPerformanceDevice = score < 45;
+            
+            console.log(`📊 Điểm số thiết bị: ${score}/100`);
+            console.log(`📱 Phiên bản: ${CURRENT_VERSION}`);
+            console.log(`📱 Thiết bị ${isLowPerformanceDevice ? 'yếu' : 'bình thường'}`);
+            
+            // Áp dụng cấu hình phiên bản
+            applyVersionSettings();
+            updateDeviceStatusUI();
+            createVersionBadge();
+        }
+        
+        function applyVersionSettings() {
+            if (CURRENT_VERSION === 'premium') {
+                // Phiên bản Cao Cấp - 5 ảnh/hàng
+                MAX_IMAGES_PER_FOLDER = 1400;
+                IMAGES_PER_PAGE = 1000;
+                MAX_CONCURRENT_IMAGE_LOADS = 25;
+                THUMBNAIL_QUALITY = 400;
+                PREVIEW_QUALITY = 1200;
+                HIGH_QUALITY = 2000;
+                LIGHTBOX_QUALITY = 4000; // 4K
+                
+                console.log('⚙️ Áp dụng cấu hình Phiên bản Cao Cấp');
+            } else {
+                // Phiên bản Cân Bằng - 4 ảnh/hàng
+                MAX_IMAGES_PER_FOLDER = 1400;
+                IMAGES_PER_PAGE = 1000;
+                MAX_CONCURRENT_IMAGE_LOADS = 10;
+                THUMBNAIL_QUALITY = 100;
+                PREVIEW_QUALITY = 800;
+                HIGH_QUALITY = 1200;
+                LIGHTBOX_QUALITY = 1200; // Full HD
+                
+                console.log('⚙️ Áp dụng cấu hình Phiên bản Cân Bằng');
+            }
+            
+            // Cập nhật class cho gallery
+            updateGalleryClass();
+        }
+        
+        function updateGalleryClass() {
+            const gallery = document.getElementById('gallery');
+            if (gallery) {
+                gallery.className = 'gallery';
+                gallery.classList.add(CURRENT_VERSION);
+            }
+        }
+        
+        function createVersionBadge() {
+            // Xóa badge cũ nếu có
+            const oldBadge = document.querySelector('.version-badge');
+            if (oldBadge) oldBadge.remove();
+            
+            const badge = document.createElement('div');
+            badge.className = `version-badge ${CURRENT_VERSION}`;
+            
+            if (CURRENT_VERSION === 'premium') {
+                badge.innerHTML = `
+                    <i class="fas fa-crown"></i>
+                    <span>Phiên bản Cao Cấp</span>
+                `;
+                badge.title = "Lightbox 4K";
+            } else {
+                badge.innerHTML = `
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Phiên bản Cân Bằng</span>
+                `;
+                badge.title = "Lightbox Full HD";
+            }
+            
+            document.body.appendChild(badge);
+        }
+        
+        function updateDeviceStatusUI() {
+            const deviceStatus = document.getElementById('device-status');
+            if (deviceStatus) {
+                const versionText = CURRENT_VERSION === 'premium' ? 'Cao Cấp' : 'Cân Bằng';
+                const icon = CURRENT_VERSION === 'premium' ? 'fa-crown' : 'fa-balance-scale';
+                deviceStatus.innerHTML = `
+                    <i class="fas ${icon}"></i> 
+                    Phiên bản: ${versionText} | 
+                    <i class="fas fa-microchip"></i> 
+                    Điểm: ${deviceScore}/100
+                `;
+            }
+        }
+
+        // ========== HÀM KHỞI TẠO ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Hệ thống tải ảnh đang khởi động...');
+            
+            // Phát hiện cấu hình thiết bị và chọn phiên bản
+            detectDevicePerformance();
+            
+            // Khởi tạo folder tabs
+            createFolderTabs();
+            
+            // Tải ảnh từ folder đầu tiên
+            loadAllImagesFromDrive(0);
+            
+            // Thêm event listener cho phím
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    changeLightboxImage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeLightboxImage(1);
+                } else if (e.key === 'd' || e.key === 'D') {
+                    if (currentLightboxIndex !== -1) {
+                        downloadOriginalQualityImage(currentLightboxIndex);
+                    }
+                }
+            });
+            
+            // Hiển thị thông báo phiên bản
+            setTimeout(() => {
+                if (CURRENT_VERSION === 'premium') {
+                    showMessage('🚀 Đang chạy Phiên bản Cao Cấp', 'success');
+                } else {
+                    showMessage('⚡ Đang chạy Phiên bản Cân Bằng', 'info');
+                }
+            }, 1000);
+        });
+
+        // ========== QUẢN LÝ FOLDER ==========
+        function createFolderTabs() {
+            const folderTabsContainer = document.getElementById('folder-tabs');
+            folderTabsContainer.innerHTML = '';
+            
+            GOOGLE_DRIVE_FOLDERS.forEach((folder, index) => {
+                const tab = document.createElement('div');
+                tab.className = `folder-tab ${index === currentFolderIndex ? 'active' : ''}`;
+                tab.innerHTML = `
+                    <i class="fas fa-folder${index === currentFolderIndex ? '-open' : ''}"></i>
+                    <span>${folder.name}</span>
+                    <span class="folder-badge" id="folder-badge-${index}">0</span>
+                `;
+                tab.onclick = () => switchFolder(index);
+                folderTabsContainer.appendChild(tab);
+            });
+        }
+
+        function switchFolder(folderIndex) {
+            if (folderIndex === currentFolderIndex) return;
+            
+            // Cập nhật tab active
+            const tabs = document.querySelectorAll('.folder-tab');
+            if (tabs[currentFolderIndex]) {
+                tabs[currentFolderIndex].classList.remove('active');
+                const prevIcon = tabs[currentFolderIndex].querySelector('i');
+                if (prevIcon) prevIcon.className = 'fas fa-folder';
+            }
+            
+            currentFolderIndex = folderIndex;
+            
+            if (tabs[folderIndex]) {
+                tabs[folderIndex].classList.add('active');
+                const currentIcon = tabs[folderIndex].querySelector('i');
+                if (currentIcon) currentIcon.className = 'fas fa-folder-open';
+            }
+            
+            // Hiển thị ảnh của folder mới
+            if (foldersData[folderIndex]) {
+                images = foldersData[folderIndex];
+                renderAllImages();
+            } else {
+                images = [];
+                showLoading(true);
+                loadAllImagesFromDrive(folderIndex);
+            }
+            
+            selectedImages.clear();
+            
+            // Hiển thị thông báo tải folder
+            showMessage(`📂 Đang tải folder: ${GOOGLE_DRIVE_FOLDERS[folderIndex].name}`, 'info');
+        }
+
+        // ========== TẢI TẤT CẢ ẢNH ==========
+        async function loadAllImagesFromDrive(folderIndex) {
+            showLoading(true);
+            
+            try {
+                console.log(`📂 Đang tải tối đa ${MAX_IMAGES_PER_FOLDER} ảnh từ folder...`);
+                
+                const folderId = GOOGLE_DRIVE_FOLDERS[folderIndex].id;
+                const allImages = await getAllImagesWithPagination(folderId);
+                
+                if (allImages.length > 0) {
+                    const imagesWithFolder = allImages.map(img => ({
+                        ...img,
+                        folderId: folderId,
+                        folderName: GOOGLE_DRIVE_FOLDERS[folderIndex].name,
+                        folderIndex: folderIndex,
+                        isOriginal: true,
+                        lightboxUrl: `https://drive.google.com/thumbnail?id=${img.id}&sz=w${LIGHTBOX_QUALITY}`
+                    }));
+                    
+                    foldersData[folderIndex] = imagesWithFolder;
+                    
+                    // Cập nhật số lượng ảnh trên tab
+                    const folderBadge = document.getElementById(`folder-badge-${folderIndex}`);
+                    if (folderBadge) {
+                        folderBadge.textContent = imagesWithFolder.length;
+                    }
+                    
+                    // Nếu đây là folder đang hiển thị
+                    if (folderIndex === currentFolderIndex) {
+                        images = foldersData[folderIndex];
+                        
+                        // Giới hạn tối đa theo phiên bản
+                        if (images.length > MAX_IMAGES_PER_FOLDER) {
+                            const originalCount = images.length;
+                            images = images.slice(0, MAX_IMAGES_PER_FOLDER);
+                            showMessage(`⚠️  Phiên bản ${CURRENT_VERSION === 'premium' ? 'Cao Cấp' : 'Cân Bằng'} hiển thị tối đa ${MAX_IMAGES_PER_FOLDER} ảnh (tổng: ${originalCount} ảnh)`, 'info');
+                        }
+                        
+                        const rowCount = CURRENT_VERSION === 'premium' ? '5 ảnh/hàng' : '4 ảnh/hàng';
+                        showMessage(`✅ Đã tải ${images.length} ảnh (${rowCount})`, 'success');
+                        renderAllImages();
+                    }
+                } else {
+                    createSampleImagesForFolder(folderIndex);
+                }
+                
+            } catch (error) {
+                console.error('❌ Lỗi tải ảnh:', error);
+                createSampleImagesForFolder(folderIndex);
+                showMessage(`⚠️  Lỗi kết nối. Đang hiển thị ảnh mẫu.`, 'warning');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function getAllImagesWithPagination(folderId) {
+            try {
+                // Kiểm tra cache
+                const cacheKey = `folder_${folderId}_${MAX_IMAGES_PER_FOLDER}`;
+                const cached = localStorage.getItem(cacheKey);
+                const now = Date.now();
+                
+                if (cached) {
+                    const cacheData = JSON.parse(cached);
+                    if (now - cacheData.timestamp < CACHE_DURATION) {
+                        console.log('📦 Sử dụng cache folder ảnh');
+                        return cacheData.data;
+                    }
+                }
+                
+                console.log('🔄 Bắt đầu tải ảnh...');
+                let allImages = [];
+                let pageToken = null;
+                let pageCount = 0;
+                const maxPages = Math.ceil(MAX_IMAGES_PER_FOLDER / IMAGES_PER_PAGE);
+                
+                do {
+                    pageCount++;
+                    console.log(`📄 Đang tải trang ${pageCount}...`);
+                    
+                    const pageData = await getImagesPage(folderId, pageToken);
+                    allImages = allImages.concat(pageData.images);
+                    pageToken = pageData.nextPageToken;
+                    
+                    // Cập nhật loading detail
+                    updateLoadingDetail(`Đang tải trang ${pageCount}: ${allImages.length} ảnh`);
+                    
+                    // Tạm dừng giữa các trang cho thiết bị yếu
+                    if (isLowPerformanceDevice && pageCount < maxPages) {
+                        await new Promise(resolve => setTimeout(resolve, 500));
+                    }
+                    
+                } while (pageToken && pageCount < maxPages && allImages.length < MAX_IMAGES_PER_FOLDER);
+                
+                console.log(`✅ Đã tải tổng cộng ${allImages.length} ảnh`);
+                
+                // Lưu vào cache
+                localStorage.setItem(cacheKey, JSON.stringify({
+                    timestamp: now,
+                    data: allImages
+                }));
+                
+                return allImages.slice(0, MAX_IMAGES_PER_FOLDER);
+                
+            } catch (error) {
+                console.error(`Lỗi tải folder ${folderId}:`, error);
+                return [];
+            }
+        }
+
+        async function getImagesPage(folderId, pageToken = null) {
+            try {
+                const apiUrl = `https://www.googleapis.com/drive/v3/files`;
+                const params = {
+                    q: `'${folderId}' in parents and mimeType contains 'image/' and trashed = false`,
+                    fields: 'files(id, name, size, webViewLink, imageMediaMetadata, originalFilename), nextPageToken',
+                    key: GOOGLE_API_KEY,
+                    pageSize: IMAGES_PER_PAGE,
+                    orderBy: 'name'
+                };
+                
+                if (pageToken) {
+                    params.pageToken = pageToken;
+                }
+                
+                // Tăng timeout cho thiết bị yếu
+                const timeoutDuration = isLowPerformanceDevice ? 30000 : 20000;
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), timeoutDuration);
+                
+                const response = await fetch(`${apiUrl}?${new URLSearchParams(params)}`, {
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                    throw new Error(`Google Drive API error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                const images = data.files ? data.files.map(file => {
+                    const originalDownloadUrl = `https://drive.google.com/uc?export=download&id=${file.id}&confirm=t`;
+                    
+                    return {
+                        id: file.id,
+                        name: file.originalFilename || file.name,
+                        viewUrl: file.webViewLink || `https://drive.google.com/file/d/${file.id}/view`,
+                        downloadUrl: originalDownloadUrl,
+                        thumbnailUrl: `https://drive.google.com/thumbnail?id=${file.id}&sz=w${THUMBNAIL_QUALITY}`,
+                        previewUrl: `https://drive.google.com/thumbnail?id=${file.id}&sz=w${PREVIEW_QUALITY}`,
+                        highQualityUrl: `https://drive.google.com/thumbnail?id=${file.id}&sz=w${HIGH_QUALITY}`,
+                        lightboxUrl: `https://drive.google.com/thumbnail?id=${file.id}&sz=w${LIGHTBOX_QUALITY}`,
+                        originalUrl: originalDownloadUrl,
+                        size: file.size || 0,
+                        type: 'drive',
+                        mimeType: 'image/jpeg',
+                        dimensions: file.imageMediaMetadata ? 
+                            `${file.imageMediaMetadata.width}x${file.imageMediaMetadata.height}` : 'Unknown'
+                    };
+                }) : [];
+                
+                return {
+                    images: images,
+                    nextPageToken: data.nextPageToken || null
+                };
+                
+            } catch (error) {
+                console.error(`Lỗi tải trang folder ${folderId}:`, error);
+                return { images: [], nextPageToken: null };
+            }
+        }
+
+        function updateLoadingDetail(text) {
+            const loadingDetail = document.getElementById('loading-detail');
+            if (loadingDetail) {
+                loadingDetail.textContent = text;
+            }
+        }
+
+        // ========== HIỂN THỊ ẢNH ==========
+        function renderAllImages() {
+            const gallery = document.getElementById('gallery');
+            
+            if (!images || images.length === 0) {
+                gallery.innerHTML = `
+                    <div class="empty-gallery">
+                        <i class="fas fa-images"></i>
+                        <h3>Không có ảnh nào trong thư mục này</h3>
+                        <p>Vui lòng kiểm tra kết nối Google Drive hoặc thử lại sau</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Hiển thị image counter
+            const imageCounter = document.getElementById('image-counter');
+            imageCounter.style.display = 'flex';
+            
+            // Reset counter
+            loadedImagesCount = 0;
+            totalImagesCount = images.length;
+            
+            // Xóa gallery cũ
+            gallery.innerHTML = '';
+            
+            // Cập nhật class cho gallery theo phiên bản
+            gallery.className = 'gallery';
+            gallery.classList.add(CURRENT_VERSION);
+            
+            console.log(`🖼️ Bắt đầu render ${totalImagesCount} ảnh (Phiên bản ${CURRENT_VERSION})...`);
+            
+            // Tạo image cards
+            const fragment = document.createDocumentFragment();
+            
+            for (let i = 0; i < totalImagesCount; i++) {
+                const imageCard = createOptimizedImageCard(images[i], i);
+                fragment.appendChild(imageCard);
+            }
+            
+            gallery.appendChild(fragment);
+            
+            // Hiển thị tất cả cards
+            const allCards = gallery.querySelectorAll('.image-card');
+            allCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('loaded');
+                }, index * 10);
+            });
+            
+            // Bắt đầu tải ảnh
+            setTimeout(() => {
+                startLoadingAllImages();
+            }, 100);
+        }
+
+        function createOptimizedImageCard(image, index) {
+            const div = document.createElement('div');
+            div.className = `image-card`;
+            div.dataset.index = index;
+            div.dataset.imageId = image.id;
+            
+            // Tạo màu placeholder
+            const hue = Array.from(image.id).reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360;
+            const placeholderColor = `hsl(${hue}, 60%, 85%)`;
+            
+            div.innerHTML = `
+                <input type="checkbox" class="image-checkbox" 
+                       onclick="toggleImageSelection(event, ${index})">
+                <div class="image-preview-container" style="background: ${placeholderColor};">
+                    <img class="image-preview" 
+                         data-src="${image.thumbnailUrl}"
+                         alt="${image.name}"
+                         loading="lazy"
+                         decoding="async">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 1.2rem; color: rgba(0,0,0,0.3);"></i>
+                    </div>
+                </div>
+                <button class="image-download-btn" onclick="downloadOriginalQualityImage(${index}, event)">
+                    <i class="fas fa-download"></i>
+                    <span>Tải ảnh</span>
+                </button>
+                <div class="image-info">
+                    <div class="image-name" title="${image.name}">
+                        ${truncateFilename(image.name, 20)}
+                        <span class="original-quality-badge" style="font-size: 9px; padding: 1px 4px; margin-left: 3px; background: #4361ee; color: white;">GỐC</span>
+                    </div>
+                    <div class="image-size">
+                        <i class="fas fa-hdd"></i> ${formatFileSize(image.size)}
+                    </div>
+                </div>
+            `;
+            
+            div.onclick = (e) => {
+                if (e.target.type !== 'checkbox') {
+                    openLightbox(index);
+                }
+            };
+            
+            return div;
+        }
+
+        function truncateFilename(filename, maxLength) {
+            if (filename.length <= maxLength) return filename;
+            const extension = filename.split('.').pop();
+            const nameWithoutExt = filename.slice(0, -(extension.length + 1));
+            const truncatedName = nameWithoutExt.slice(0, maxLength - extension.length - 3);
+            return `${truncatedName}...${extension}`;
+        }
+
+        function startLoadingAllImages() {
+            // Tạo hàng đợi tải ảnh
+            loadingQueue = [];
+            
+            for (let i = 0; i < images.length; i++) {
+                loadingQueue.push({
+                    image: images[i],
+                    index: i
+                });
+            }
+            
+            // Bắt đầu xử lý hàng đợi
+            processImageQueue();
+        }
+
+        async function processImageQueue() {
+            if (processingQueue || loadingQueue.length === 0) return;
+            
+            processingQueue = true;
+            
+            // Lấy một nhóm ảnh để tải đồng thời
+            const batch = loadingQueue.splice(0, MAX_CONCURRENT_IMAGE_LOADS);
+            
+            try {
+                // Tải tất cả ảnh trong batch cùng lúc
+                const promises = batch.map(async (item) => {
+                    try {
+                        await loadSingleImageOptimized(item.image, item.index);
+                    } catch (error) {
+                        console.error(`Lỗi tải ảnh ${item.image.name}:`, error);
+                    }
+                });
+                
+                await Promise.allSettled(promises);
+                
+                // Cập nhật counter
+                updateImageCounter();
+                
+                // Nếu còn ảnh trong hàng đợi, đợi một chút trước khi tải tiếp
+                if (loadingQueue.length > 0) {
+                    const delay = isLowPerformanceDevice ? 200 : 50;
+                    setTimeout(() => {
+                        processingQueue = false;
+                        processImageQueue();
+                    }, delay);
+                } else {
+                    processingQueue = false;
+                    const rowCount = CURRENT_VERSION === 'premium' ;
+                    showMessage(`✅ Đã tải xong ${loadedImagesCount} ảnh (${rowCount})!`, 'success');
+                }
+                
+            } catch (error) {
+                console.error('Lỗi xử lý batch ảnh:', error);
+                processingQueue = false;
+                
+                // Thử lại sau 2 giây nếu có lỗi
+                if (loadingQueue.length > 0) {
+                    setTimeout(() => processImageQueue(), 2000);
+                }
+            }
+        }
+
+        async function loadSingleImageOptimized(image, index) {
+            return new Promise((resolve, reject) => {
+                const imgElement = document.querySelector(`.image-card[data-index="${index}"] .image-preview`);
+                if (!imgElement) {
+                    reject(new Error('Không tìm thấy element ảnh'));
+                    return;
+                }
+                
+                // Kiểm tra cache memory
+                const cacheKey = `img_${image.id}_${THUMBNAIL_QUALITY}`;
+                if (imageCache.has(cacheKey)) {
+                    imgElement.src = imageCache.get(cacheKey);
+                    imgElement.classList.add('loaded');
+                    
+                    // Ẩn spinner
+                    const spinner = imgElement.parentElement.querySelector('.fa-spinner');
+                    if (spinner) {
+                        spinner.style.display = 'none';
+                    }
+                    
+                    loadedImagesCount++;
+                    resolve();
+                    return;
+                }
+                
+                // Kiểm tra cache sessionStorage
+                const cached = sessionStorage.getItem(cacheKey);
+                if (cached) {
+                    const cacheData = JSON.parse(cached);
+                    if (Date.now() - cacheData.timestamp < CACHE_DURATION) {
+                        imgElement.src = cacheData.data;
+                        imgElement.classList.add('loaded');
+                        
+                        // Ẩn spinner
+                        const spinner = imgElement.parentElement.querySelector('.fa-spinner');
+                        if (spinner) {
+                            spinner.style.display = 'none';
+                        }
+                        
+                        // Lưu vào memory cache
+                        imageCache.set(cacheKey, cacheData.data);
+                        
+                        loadedImagesCount++;
+                        resolve();
+                        return;
+                    }
+                }
+                
+                // Tăng timeout cho thiết bị yếu
+                const timeoutDuration = isLowPerformanceDevice ? 20000 : 10000;
+                const timeoutId = setTimeout(() => {
+                    imgElement.onerror = null;
+                    reject(new Error('Timeout loading image'));
+                }, timeoutDuration);
+                
+                imgElement.onload = () => {
+                    clearTimeout(timeoutId);
+                    imgElement.classList.add('loaded');
+                    
+                    // Ẩn spinner
+                    const spinner = imgElement.parentElement.querySelector('.fa-spinner');
+                    if (spinner) {
+                        spinner.style.display = 'none';
+                    }
+                    
+                    // Lưu vào cache
+                    imageCache.set(cacheKey, image.thumbnailUrl);
+                    sessionStorage.setItem(cacheKey, JSON.stringify({
+                        timestamp: Date.now(),
+                        data: image.thumbnailUrl
+                    }));
+                    
+                    loadedImagesCount++;
+                    resolve();
+                };
+                
+                imgElement.onerror = () => {
+                    clearTimeout(timeoutId);
+                    console.error(`Không thể tải ảnh: ${image.name}`);
+                    
+                    // Hiển thị placeholder thay thế
+                    const hue = Array.from(image.id).reduce((acc, char) => acc + char.charCodeAt(0), 0) % 360;
+                    const placeholderColor = `hsl(${hue}, 60%, 85%)`;
+                    imgElement.parentElement.style.background = placeholderColor;
+                    
+                    const spinner = imgElement.parentElement.querySelector('.fa-spinner');
+                    if (spinner) {
+                        spinner.style.display = 'none';
+                    }
+                    
+                    loadedImagesCount++;
+                    resolve();
+                };
+                
+                imgElement.src = image.thumbnailUrl;
+            });
+        }
+
+        function updateImageCounter() {
+            const counterText = document.getElementById('counter-text');
+            const rowCount = CURRENT_VERSION === 'premium';
+            counterText.textContent = `Đã tải ${loadedImagesCount}/${totalImagesCount} ảnh (${rowCount})`;
+        }
+
+        // ========== LIGHTBOX CAO CẤP ==========
+        function openLightbox(index) {
+            if (index < 0 || index >= images.length) return;
+            
+            currentLightboxIndex = index;
+            const image = images[index];
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxInfo = document.getElementById('lightbox-info');
+            const downloadBtn = document.getElementById('lightbox-download-btn');
+            const loadingSpinner = document.getElementById('lightbox-loading');
+            const counterText = document.getElementById('lightbox-counter-text');
+            
+            // Hiển thị lightbox
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Hiển thị counter
+            counterText.textContent = `${index + 1}/${images.length}`;
+            
+            // Hiển thị loading spinner
+            loadingSpinner.style.display = 'block';
+            lightboxImg.classList.remove('loaded');
+            lightboxImg.style.opacity = '0';
+            
+            // Hiển thị thông tin ảnh
+            const versionText = CURRENT_VERSION === 'premium' ? '4K' : 'Full HD';
+            lightboxInfo.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <strong style="color: #4361ee; font-size: 16px;">${image.name}</strong>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap; font-size: 13px; color: #ccc;">
+                        <span><i class="fas fa-expand-arrows-alt"></i> ${image.dimensions || 'Unknown'}</span>
+                        <span><i class="fas fa-hdd"></i> ${formatFileSize(image.size)}</span>
+                        <span><i class="fas fa-folder"></i> ${image.folderName || 'Folder ' + image.folderIndex}</span>
+                        <span><i class="fas fa-tv"></i> Lightbox ${versionText}</span>
+                    </div>
+                </div>
+            `;
+            
+            // Cập nhật nút download
+            downloadBtn.onclick = () => downloadOriginalQualityImage(index);
+            
+            // Tạo URL cho lightbox - chất lượng theo phiên bản
+            const lightboxImageUrl = image.lightboxUrl || image.highQualityUrl;
+            
+            console.log(`🖼️ Lightbox ${versionText}: Tải ảnh chất lượng cao (${LIGHTBOX_QUALITY}px) cho: ${image.name}`);
+            
+            // Tải ảnh chất lượng cao cho lightbox
+            const highQualityImage = new Image();
+            
+            highQualityImage.onload = () => {
+                loadingSpinner.style.display = 'none';
+                lightboxImg.src = highQualityImage.src;
+                lightboxImg.classList.add('loaded');
+                lightboxImg.style.opacity = '1';
+                console.log(`✅ Lightbox: Đã tải ảnh chất lượng ${versionText}`);
+            };
+            
+            highQualityImage.onerror = () => {
+                console.warn(`⚠️ Không thể tải ảnh chất lượng cao, thử ảnh preview: ${image.name}`);
+                loadingSpinner.style.display = 'none';
+                lightboxImg.src = image.previewUrl || image.thumbnailUrl;
+                lightboxImg.classList.add('loaded');
+                lightboxImg.style.opacity = '1';
+            };
+            
+            // Thử lấy từ cache trước
+            const lightboxCacheKey = `lightbox_${image.id}_${LIGHTBOX_QUALITY}`;
+            if (imageCache.has(lightboxCacheKey)) {
+                highQualityImage.src = imageCache.get(lightboxCacheKey);
+            } else {
+                const cached = sessionStorage.getItem(lightboxCacheKey);
+                if (cached) {
+                    const cacheData = JSON.parse(cached);
+                    if (Date.now() - cacheData.timestamp < CACHE_DURATION) {
+                        highQualityImage.src = cacheData.data;
+                    } else {
+                        highQualityImage.src = lightboxImageUrl;
+                    }
+                } else {
+                    highQualityImage.src = lightboxImageUrl;
+                }
+            }
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const loadingSpinner = document.getElementById('lightbox-loading');
+            
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentLightboxIndex = -1;
+            
+            lightboxImg.src = '';
+            lightboxImg.classList.remove('loaded');
+            loadingSpinner.style.display = 'block';
+        }
+
+        function changeLightboxImage(direction) {
+            if (currentLightboxIndex === -1) return;
+            
+            let newIndex = currentLightboxIndex + direction;
+            
+            if (newIndex < 0) {
+                newIndex = images.length - 1;
+            } else if (newIndex >= images.length) {
+                newIndex = 0;
+            }
+            
+            openLightbox(newIndex);
+        }
+
+        // ========== TẢI ẢNH GỐC ==========
+        async function downloadOriginalQualityImage(index, event = null) {
+            if (event) event.stopPropagation();
+            
+            if (index < 0 || index >= images.length) return;
+            
+            const image = images[index];
+            
+            showMessage(`🚀 Đang bắt đầu tải ảnh: ${image.name}`, 'info');
+            
+            try {
+                const link = document.createElement('a');
+                link.href = image.originalUrl;
+                link.download = image.name;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                
+                // Trigger download
+                link.click();
+                
+                // Dọn dẹp sau 1 giây
+                setTimeout(() => {
+                    if (link.parentNode) {
+                        document.body.removeChild(link);
+                    }
+                    showMessage(`✅ Đã bắt đầu tải ảnh: ${image.name}`, 'success');
+                }, 100);
+                
+            } catch (error) {
+                console.error('❌ Lỗi tải ảnh:', error);
+                
+                // Fallback: mở trong tab mới
+                try {
+                    window.open(image.originalUrl, '_blank');
+                    showMessage(`✅ Đã mở ảnh trong tab mới: ${image.name}`, 'success');
+                } catch (fallbackError) {
+                    console.error('❌ Lỗi fallback:', fallbackError);
+                    showMessage(`⚠️  Không thể tải ảnh. Vui lòng thử lại sau.`, 'warning');
+                }
+            }
+        }
+
+        // ========== PROGRESS OVERLAY FUNCTIONS ==========
+        function showProgressOverlay(title) {
+            const overlay = document.getElementById('progress-overlay');
+            const titleEl = document.getElementById('progress-title');
+            const fillEl = document.getElementById('progress-fill');
+            const textEl = document.getElementById('progress-text');
+            
+            titleEl.textContent = title || 'Đang tải...';
+            fillEl.style.width = '0%';
+            textEl.textContent = '0%';
+            
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideProgressOverlay() {
+            const overlay = document.getElementById('progress-overlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateProgress(percentage, text) {
+            const fillEl = document.getElementById('progress-fill');
+            const textEl = document.getElementById('progress-text');
+            
+            fillEl.style.width = percentage + '%';
+            textEl.textContent = text || percentage + '%';
+        }
+
+        // ========== UTILITY FUNCTIONS ==========
+        function showLoading(show) {
+            const loadingAlbum = document.getElementById('loading-album');
+            const gallery = document.getElementById('gallery');
+            
+            if (show) {
+                loadingAlbum.style.display = 'block';
+                gallery.style.display = 'none';
+            } else {
+                loadingAlbum.style.display = 'none';
+                gallery.style.display = 'grid';
+            }
+        }
+
+        function showMessage(message, type = 'info') {
+            const oldMessages = document.querySelectorAll('.message');
+            oldMessages.forEach(msg => msg.remove());
+            
+            const messageEl = document.createElement('div');
+            messageEl.className = `message message-${type}`;
+            
+            const icon = type === 'success' ? 'check-circle' : 
+                        type === 'warning' ? 'exclamation-triangle' : 'info-circle';
+            
+            messageEl.innerHTML = `
+                <i class="fas fa-${icon}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(messageEl);
+            
+            setTimeout(() => {
+                if (messageEl.parentNode) {
+                    messageEl.style.animation = 'slideOut 0.3s ease forwards';
+                    setTimeout(() => {
+                        if (messageEl.parentNode) {
+                            document.body.removeChild(messageEl);
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+
+        function formatFileSize(bytes) {
+            if (!bytes || bytes === 0) return '0 KB';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        // ========== SAMPLE IMAGES ==========
+        function createSampleImagesForFolder(folderIndex, count = 20) {
+            const folderName = GOOGLE_DRIVE_FOLDERS[folderIndex].name;
+            const sampleImages = [];
+            
+            const imageCount = Math.min(count, MAX_IMAGES_PER_FOLDER);
+            
+            for (let i = 1; i <= imageCount; i++) {
+                sampleImages.push({
+                    id: `sample_${folderIndex}_${i}`,
+                    name: `${folderName}_${String(i).padStart(3, '0')}.jpg`,
+                    viewUrl: '#',
+                    downloadUrl: '#',
+                    thumbnailUrl: `https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?w=${THUMBNAIL_QUALITY}&h=${Math.round(THUMBNAIL_QUALITY*0.75)}&fit=crop&${i}`,
+                    previewUrl: `https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?w=${PREVIEW_QUALITY}&h=${Math.round(PREVIEW_QUALITY*0.75)}&fit=crop`,
+                    highQualityUrl: `https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?w=${HIGH_QUALITY}&h=${Math.round(HIGH_QUALITY*0.75)}&fit=crop`,
+                    lightboxUrl: `https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?w=${LIGHTBOX_QUALITY}&h=${Math.round(LIGHTBOX_QUALITY*0.75)}&fit=crop`,
+                    originalUrl: '#',
+                    size: 9000000, // ~9MB như trong hình
+                    type: 'sample',
+                    folderId: GOOGLE_DRIVE_FOLDERS[folderIndex].id,
+                    folderName: folderName,
+                    folderIndex: folderIndex,
+                    isOriginal: true,
+                    dimensions: '1920x1080'
+                });
+            }
+            
+            foldersData[folderIndex] = sampleImages;
+            
+            const folderBadge = document.getElementById(`folder-badge-${folderIndex}`);
+            if (folderBadge) {
+                folderBadge.textContent = sampleImages.length;
+            }
+            
+            if (folderIndex === currentFolderIndex) {
+                images = sampleImages;
+                renderAllImages();
+            }
+        }
+
+        // ========== SELECTION FUNCTIONS ==========
+        function toggleImageSelection(event, index) {
+            event.stopPropagation();
+            if (selectedImages.has(index)) {
+                selectedImages.delete(index);
+            } else {
+                selectedImages.add(index);
+            }
+            
+            const gallery = document.getElementById('gallery');
+            const imageCards = gallery.getElementsByClassName('image-card');
+            if (imageCards[index]) {
+                if (selectedImages.has(index)) {
+                    imageCards[index].classList.add('selected');
+                } else {
+                    imageCards[index].classList.remove('selected');
+                }
+            }
+        }
+
+        function selectAllImages() {
+            for (let i = 0; i < images.length; i++) {
+                selectedImages.add(i);
+            }
+            
+            const gallery = document.getElementById('gallery');
+            const imageCards = gallery.getElementsByClassName('image-card');
+            for (let i = 0; i < imageCards.length; i++) {
+                imageCards[i].classList.add('selected');
+                const checkbox = imageCards[i].querySelector('.image-checkbox');
+                if (checkbox) checkbox.checked = true;
+            }
+            
+            const rowCount = CURRENT_VERSION === 'premium' ;
+            showMessage(`✅ Đã chọn ${images.length} ảnh (${rowCount})`, 'success');
+        }
+
+        function deselectAllImages() {
+            selectedImages.clear();
+            
+            const gallery = document.getElementById('gallery');
+            const imageCards = gallery.getElementsByClassName('image-card');
+            for (let i = 0; i < imageCards.length; i++) {
+                imageCards[i].classList.remove('selected');
+                const checkbox = imageCards[i].querySelector('.image-checkbox');
+                if (checkbox) checkbox.checked = false;
+            }
+            
+            showMessage('✅ Đã bỏ chọn tất cả ảnh', 'success');
+        }
+
+        async function downloadSelectedOriginalImages() {
+            if (selectedImages.size === 0) {
+                showMessage('⚠️  Vui lòng chọn ít nhất một ảnh để tải xuống', 'warning');
+                return;
+            }
+            
+            // Giới hạn số lượng ảnh tải xuống theo phiên bản
+            const maxDownloads = CURRENT_VERSION === 'premium' ? 20 : 10;
+            if (selectedImages.size > maxDownloads) {
+                showMessage(`⚠️  Tối đa ${maxDownloads} ảnh/lần để đảm bảo tốc độ.`, 'warning');
+                return;
+            }
+            
+            const selectedIndices = Array.from(selectedImages).slice(0, maxDownloads);
+            
+            showProgressOverlay(`Đang tải ${selectedIndices.length} ảnh...`);
+            
+            for (let i = 0; i < selectedIndices.length; i++) {
+                const percentage = Math.round(((i + 1) / selectedIndices.length) * 100);
+                updateProgress(percentage, `Đang tải ảnh ${i + 1}/${selectedIndices.length}`);
+                
+                await downloadOriginalQualityImage(selectedIndices[i]);
+                
+                // Tăng thời gian chờ giữa các lần tải cho thiết bị yếu
+                const delay = isLowPerformanceDevice ? 1000 : 500;
+                if (i < selectedIndices.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+            
+            hideProgressOverlay();
+            showMessage(`✅ Đã tải xong ${selectedIndices.length} ảnh`, 'success');
+        }
+
+        async function downloadAllOriginalImages() {
+            if (images.length === 0) {
+                showMessage('⚠️  Không có ảnh nào để tải xuống', 'warning');
+                return;
+            }
+            
+            // Giới hạn số lượng ảnh tải xuống theo phiên bản
+            const maxDownloads = CURRENT_VERSION === 'premium' ? 20 : 10;
+            if (images.length > maxDownloads) {
+                showMessage(`⚠️  Tối đa ${maxDownloads} ảnh/lần để đảm bảo tốc độ.`, 'warning');
+                return;
+            }
+            
+            selectAllImages();
+            
+            showProgressOverlay(`Đang tải ${Math.min(images.length, maxDownloads)} ảnh...`);
+            
+            // Tải tất cả ảnh tuần tự
+            for (let i = 0; i < Math.min(images.length, maxDownloads); i++) {
+                const percentage = Math.round(((i + 1) / Math.min(images.length, maxDownloads)) * 100);
+                updateProgress(percentage, `Đang tải ảnh ${i + 1}/${Math.min(images.length, maxDownloads)}`);
+                
+                await downloadOriginalQualityImage(i);
+                
+                // Tăng thời gian chờ giữa các lần tải cho thiết bị yếu
+                const delay = isLowPerformanceDevice ? 1000 : 500;
+                if (i < Math.min(images.length, maxDownloads) - 1) {
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+            
+            hideProgressOverlay();
+            showMessage(`✅ Đã tải xong ${Math.min(images.length, maxDownloads)} ảnh`, 'success');
+        }
+    </script>
+</body>
+</html>
